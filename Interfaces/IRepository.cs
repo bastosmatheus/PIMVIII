@@ -8,7 +8,7 @@ public interface IRepository<T>
 
     public void Excluir(T entidade);
 
-    public void ObterPorId(int id);
+    public T ObterPorId(int id);
 
     public List<T> ObterTodos();
 }

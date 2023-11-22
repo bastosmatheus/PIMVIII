@@ -13,28 +13,32 @@ public class CarrinhoRepository : IRepository<Carrinho>
     {
         _context = context;
     }
-    public void Adicionar(Carrinho entidade)
-    {
-        
-    }
-
-    public void Atualizar(Carrinho entidade)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Excluir(Carrinho entidade)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void ObterPorId(int id)
-    {
-        throw new NotImplementedException();
-    }
 
     public List<Carrinho> ObterTodos()
     {
-        throw new NotImplementedException();
+        return _context.Carrinhos.ToList();
+    }
+
+    public Carrinho ObterPorId(int id)
+    {
+        return _context.Carrinhos.Find(id);
+    }
+
+    public void Adicionar(Carrinho carrinho)
+    {
+        _context.Carrinhos.Add(carrinho);
+        _context.SaveChanges();
+    }
+
+    public void Atualizar(Carrinho carrinho)
+    {
+        _context.Carrinhos.Update(carrinho);
+        _context.SaveChanges();
+    }
+
+    public void Excluir(Carrinho carrinho)
+    {
+        _context.Carrinhos.Remove(carrinho);
+        _context.SaveChanges();
     }
 }
