@@ -6,6 +6,7 @@ using PIMVIII.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IRepository<Cliente>, ClienteRepository>();
 builder.Services.AddScoped<IRepository<Vendedor>, VendedorRepository>();
@@ -18,5 +19,11 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+});
 app.Run();
 
